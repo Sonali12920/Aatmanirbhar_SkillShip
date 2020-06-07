@@ -1,0 +1,50 @@
+https://leetcode.com/problems/intersection-of-two-arrays/
+
+Intersection of Two Arrays
+
+Given two arrays, write a function to compute their intersection.
+
+Example 1:
+
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2]
+Example 2:
+
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [9,4]
+
+
+Solution:
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+       int n = nums1.size();
+           int m = nums2.size();
+           set<int> x;
+           vector<int> res;
+            if(n == 0 || m == 0) 
+               return res;
+        sort(nums2.begin(),nums2.end());
+        for(int i=0;i<n;i++){
+            int start = 0,end = m-1;
+            while(start <= end ){
+                int mid = start + (end - start)/2;
+                if(nums2[mid] == nums1[i]){
+                    x.insert(nums1[i]);
+                    break;
+                }
+                else if(nums2[mid] > nums1[i]){
+                    end = mid - 1;
+                }
+                else{
+                    start = mid + 1;
+                }
+            }
+        }
+        for(int i : x){
+            res.push_back(i);
+        }
+        return res;
+    } 
+};
