@@ -1,0 +1,39 @@
+https://leetcode.com/problems/longest-common-prefix/
+
+Longest Common Prefix
+
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+
+Example 1:
+
+Input: ["flower","flow","flight"]
+Output: "fl"
+Example 2:
+
+Input: ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+
+
+Solution:
+
+//vertical scanning approach
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+          if(strs.size()==0) 
+              return "";
+            int i=0;
+             while(true) {
+               char ch=strs[0][i];
+                 for(string s : strs) {
+                    if(i==s.length()) 
+                        return s;
+                    if(s[i]!=ch) 
+                      return s.substr(0, i);
+                   }
+                   i++;
+               }
+    }
+};
