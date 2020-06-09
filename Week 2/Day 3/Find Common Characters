@@ -1,0 +1,54 @@
+https://leetcode.com/problems/find-common-characters/
+
+Find Common Characters
+
+Given an array A of strings made only from lowercase letters, return a list of all characters that show up in all strings within the list (including duplicates).  For example, if a character occurs 3 times in all strings but not 4 times, you need to include that character three times in the final answer.
+
+You may return the answer in any order.
+
+Example 1:
+Input: ["bella","label","roller"]
+Output: ["e","l","l"]
+
+Example 2:
+Input: ["cool","lock","cook"]
+Output: ["c","o"]
+
+
+
+Solution:
+
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& A) {
+        vector<int> h1(26,0);
+        vector<int> h2(26,0);
+        
+        for(char ch : A[0]) 
+            h1[ch - 'a']++;
+        
+        for(int i = 1; i<A.size(); i++) {
+            for(char ch : A[i]) 
+                 h2[ch - 'a']++;
+            
+            for(int j=0; j<26; j++) {
+                h1[j] = min(h1[j], h2[j]);
+                h2[j]=0;
+            }
+        }
+        
+        vector<string> commChar; 
+        for(int i = 0; i<26;i++)
+            if(h1[i]>0) {
+                int c=h1[i];
+                while(c--) 
+                {
+                    char z = i+'a';
+                    string res;
+                    res = z;
+                    commChar.push_back(res);
+                 }     
+            }
+        return commChar; 
+    }
+};
