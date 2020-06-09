@@ -1,0 +1,84 @@
+https://leetcode.com/problems/permutation-in-string/
+
+Permutation in String
+
+Given two strings s1 and s2, write a function to return true if s2 contains the permutation of s1. In other words, one of the first string's permutations is the substring of the second string.
+
+ 
+
+Example 1:
+Input: s1 = "ab" s2 = "eidbaooo"
+Output: True
+Explanation: s2 contains one permutation of s1 ("ba").
+
+Example 2:
+Input:s1= "ab" s2 = "eidboaoo"
+Output: False
+
+
+Solution:
+
+//Sliding Window
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+
+        if (s2.length() < s1.length())
+            return false;
+        unordered_map<char, int> t;
+        int n = s1.length();
+        for (char c : s1) 
+            t[c]++;
+                
+        int l = 0;
+        int r = 0;
+        int count = t.size();
+        while (r<s2.length()) {
+            char x = s2[r];
+            if (count!= 0) {
+                if (t.count(x) == 1) {
+                    t[x]--;
+                    if (t[x] == 0) {
+                        count--;
+                    }
+                }
+                r++;
+            }
+			while (count == 0) {
+				if (r-l == n) {
+					return true;
+				}
+				char y = s2[l];
+				if (t.count(y) == 1) {
+					t[y]++;
+					if (t[y] > 0) {
+						count++;
+					}
+				}
+				l++;
+			}
+        }
+        return false;
+    }
+};
+
+
+Alternate SOlution(not efficient):
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        vector<int> count1(26, 0);
+        for(char c : s1) count1[c - 'a']++;
+        int n = s1.size();
+        vector<int> count2(26, 0);
+        for(int i = 0; i < s2.size(); i++)
+        {
+            count2[s2[i] - 'a']++;
+            if(i >= n) 
+                count2[s2[i-n] - 'a']--;            
+            if(count2 == count1) 
+                return true;
+        }
+        return false;
+    }
+};
