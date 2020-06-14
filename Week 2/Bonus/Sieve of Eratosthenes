@@ -1,0 +1,26 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+void SOE(int n) 
+{
+    bool prm[n+1]; 
+    set(prm, true, sizeof(prm)); 
+    for (int i=2; i*i<=n; i++) 
+    { 
+        if (prm[i] == true) 
+        { 
+            for (int j=i*i; j<=n; j += i) 
+                prm[j] = false; 
+        } 
+    } 
+    for (int i=2; i<=n; i++) {
+       if (prm[i]) 
+          cout<<i<<" "; 
+} 
+int main() 
+{ 
+    int n;
+    cin>>n;
+    SOE(n); 
+    return 0; 
+}
