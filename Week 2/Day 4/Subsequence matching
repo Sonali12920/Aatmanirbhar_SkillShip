@@ -1,0 +1,75 @@
+https://practice.geeksforgeeks.org/problems/subsequence-matching/0
+
+Subsequence matching
+
+Given an all upper case string, check if it is a combination of one or more of the following:
+1) R
+2) RY
+3) RYY
+
+Input:
+First line contains an integer T denoting the number of test cases. Each of the following T lines will contain an upper case string.
+
+Output:
+Print YES if the sequence is correct, NO if not correct.
+
+Constraints:  
+1<=T<=100
+1<=10^5<= Size of String
+
+Example: 
+
+Input:
+3
+RY
+RWR
+RRYY
+
+Output:
+YES
+NO
+YES
+
+
+
+Solution:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t--){
+	    string s;
+	    cin>>s;
+	    int temp=1;
+	    int i=0;
+        while(i<s.size())
+        {
+            if(s[i]=='R')
+            {
+                if(s[i+1]=='Y')
+                {
+                    if(s[i+2]=='Y')
+                    i=i+3;
+                    else
+                    i=i+2;
+                }
+                else
+                i=i+1;
+            }
+            else
+            {
+                temp=0;
+                break;
+            }
+        }
+        if(temp==0)
+            cout<<"NO\n";
+        else
+           cout<<"YES\n";
+	}
+	return 0;
+}
