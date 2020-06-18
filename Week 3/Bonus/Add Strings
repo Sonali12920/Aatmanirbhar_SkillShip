@@ -1,0 +1,40 @@
+https://leetcode.com/problems/add-strings/
+
+Add Strings
+
+Given two non-negative integers num1 and num2 represented as string, return the sum of num1 and num2.
+
+Note:
+
+The length of both num1 and num2 is < 5100.
+Both num1 and num2 contains only digits 0-9.
+Both num1 and num2 does not contain any leading zero.
+You must not use any built-in BigInteger library or convert the inputs to integer directly.
+
+
+Solution:
+
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        int i = num1.length()-1;
+        int j = num2.length()-1;
+        int cry = 0;
+         string res = "";
+        while(i>=0||j>=0||cry > 0)
+        {
+            int x = 0,y=0, z=0;
+            if(i>=0)
+                x = num1[i--] - '0';
+            
+            if(j>=0)
+                y = num2[j--] - '0';
+            
+            int p = x+y+cry;
+            z = p % 10;
+            cry = p / 10;
+            res = to_string(z) + res;
+        }
+        return res;
+    }
+};
