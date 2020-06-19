@@ -1,0 +1,66 @@
+https://practice.geeksforgeeks.org/problems/circular-linked-list/1
+
+Check If Circular Linked List
+
+Given a singly linked list, find if the linked list is circular or not. A linked list is called circular if it not NULL terminated and all nodes are connected in the form of a cycle. An empty linked list is considered as circular.
+
+Input:
+First line of input contains number of testcases T. For each testcase, first line consists of number of nodes in the linked list and an integer representing if the list is circular list.
+
+Output:
+The function should return true if the given linked list is circular, else false.
+
+User Task:
+The task is to complete the function isCircular() which checks if the given linked list is circular or not. It should return true or false accordingly.
+
+Constraints:
+1 <=T<= 50
+1 <=N<= 100
+1 <=value<= 1000
+
+Example:
+Input:
+2
+5 1      
+1 2 3 4 5
+6 0
+2 4 6 7 5 1
+
+Output:
+1
+0
+
+Explanation:
+Testcase 1: k is 1, therefore output is 1.
+
+
+
+Solution:
+
+/* Link list Node 
+struct Node
+{
+    int data;
+    struct Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+    
+}; 
+*/
+
+/* Should return true if linked list is circular, else false */
+bool isCircular(Node *head)
+{
+    Node *tmp=head;
+   while(tmp->next!=NULL && tmp->next!=head)
+   {
+       tmp=tmp->next;
+   }
+   if(tmp->next==NULL)
+      return false;
+    else
+      return true;
+}
