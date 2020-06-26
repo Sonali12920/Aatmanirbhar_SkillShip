@@ -1,0 +1,61 @@
+https://practice.geeksforgeeks.org/problems/largest-subarray-of-0s-and-1s/1
+
+Largest subarray of 0's and 1's
+
+Given an array of 0s and 1s. Find the length of the largest subarray with equal number of 0s and 1s.
+Input:
+The first line of the input is T denoting the number of test cases. Then T test cases follow . Each test case contains two lines. The first line of each test case is a number N denoting the size of the array and in the next line are N space separated values of A [].
+Output:
+For each test case output in a new line the max length of the subarray.
+
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function maxLen() which takes the array arr[] and the size of the array as inputs and returns the length of the largest subarray with equal number of 0s and 1s.
+Expected Time Complexity: O(N).
+Expected Auxiliary Space: O(N).
+
+Constraints:
+1 <= T <= 100
+1 <= N <= 105
+0 <= A[] <= 1
+
+Example:
+Input
+2
+4
+0 1 0 1
+5
+0 0 1 0 0
+
+Output
+4
+2
+
+
+
+Solution:
+
+int maxLen(int arr[], int N)
+{
+        map<int,int> m;
+        int curr = 0;
+        int res = 0;
+        int a[N+2];
+        for(int i = 0 ; i<N ; i++)
+            a[i+1] = arr[i];
+        for(int i = 1 ; i<=N ; i++)
+        {
+            curr += a[i]==0 ?-1:1;
+            if(curr==0)
+            {
+                res = max(res , i);
+            }
+            else
+            {
+                if(m[curr])
+                    res = max(res , i - m[curr]);
+                else
+                    m[curr] = i;
+            }
+        }
+        return res;
+}
