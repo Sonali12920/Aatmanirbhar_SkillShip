@@ -1,0 +1,41 @@
+https://leetcode.com/problems/top-k-frequent-elements/
+
+Top K Frequent Elements
+
+Given a non-empty array of integers, return the k most frequent elements.
+
+Example 1:
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+
+
+Solution:
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> m;
+        priority_queue<pair<int,int>> pq;
+        vector<pair<int,int>> v;
+         for(int i=0;i<nums.size();i++)
+                m[nums[i]]++;
+         for(auto z:m)
+                pq.push(make_pair(z.second,z.first));
+        while(k--)
+         {
+            v.push_back(pq.top());
+             pq.pop();
+          }
+          int n=v.size();
+          int i=0;
+          vector t(n,0);
+           for(auto x:v)
+              {
+
+                t[i]=x.second;
+                i++;
+               }
+    return t;
+    
+    }
+};
