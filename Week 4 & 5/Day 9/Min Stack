@@ -1,0 +1,78 @@
+https://leetcode.com/problems/min-stack/
+
+Min Stack
+
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+push(x) -- Push element x onto stack.
+pop() -- Removes the element on top of the stack.
+top() -- Get the top element.
+getMin() -- Retrieve the minimum element in the stack.
+ 
+
+Example 1:
+Input
+["MinStack","push","push","push","getMin","pop","top","getMin"]
+[[],[-2],[0],[-3],[],[],[],[]]
+
+Output
+[null,null,null,null,-3,null,0,-2]
+
+
+
+Solution:
+
+class MinStack {
+public:
+    /** initialize your data structure here. */
+    stack<int> s;
+    MinStack() {
+        
+    }
+    
+    void push(int x) {
+            if(s.empty())
+        {
+            s.push(x);
+            s.push(x);
+        }
+        else
+        {
+            int min = s.top();
+            s.push(x);
+            if(min > x)
+                s.push(x);
+            else
+                s.push(min);
+        }
+    }
+    
+    void pop() {
+        s.pop();
+        s.pop();
+    }
+    
+    int top() {
+          if(s.empty())
+            return -1;
+        int tmp = s.top();
+        s.pop();
+        int top = s.top();
+        s.push(tmp);
+        return top;
+    }
+    
+    int getMin() {
+        return s.empty() ? -1 : s.top();
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(x);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->getMin();
+ */
+
