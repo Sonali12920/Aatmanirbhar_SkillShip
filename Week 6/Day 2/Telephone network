@@ -1,0 +1,31 @@
+https://www.hackerearth.com/practice/math/combinatorics/inclusion-exclusion/practice-problems/algorithm/mayanks-network/description/
+
+Telephone network
+
+Solution:
+
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long int ll;
+int main(){
+    int t;
+    cin>>t;
+    ll n;
+    while(t--){
+        cin>>n;
+        ll res,x;
+        if(n<=3)
+        res=0;
+        else if(n%2==0){
+            x=n/2;
+            res=x*(n-1)-n;
+        }
+        else{
+            x=(n-1)/2;
+            res=x*n-n;
+        }
+        cout<<res<<endl;
+    }
+    return 0;
+}
