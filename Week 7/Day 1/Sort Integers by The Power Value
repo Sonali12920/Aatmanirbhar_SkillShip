@@ -1,0 +1,27 @@
+https://leetcode.com/problems/sort-integers-by-the-power-value/
+
+Sort Integers by The Power Value
+
+class Solution {
+public:
+    int getKth(int lo, int hi, int k) {
+         map<int,int>m;
+        int count = 0, i;
+        vector<pair<int,int>>v;
+        
+        for(int p=lo; p<=hi; p++){
+            i = p;
+            count = 0;
+            while(i!=1){
+                if(i%2) i = i * 3 + 1;
+                else i = i / 2;
+                count++;
+            }
+            v.push_back(make_pair(count,p));
+        }
+        
+        sort(v.begin(),v.end());
+        
+        return v[k-1].second;
+    }
+};

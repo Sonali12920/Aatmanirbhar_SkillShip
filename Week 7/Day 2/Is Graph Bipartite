@@ -1,0 +1,33 @@
+https://leetcode.com/problems/is-graph-bipartite/
+
+Is Graph Bipartite?
+
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n=graph.size();
+         vector v(n,0);
+         queue<int > q;
+         for(int i=0;i<n;i++){
+            if(v[i]!=0)
+             continue;
+                
+          v[i]=1;
+          q.push(i);
+         while(!q.empty()){
+           int node=q.front();
+            q.pop();
+            for(auto i:graph[node]){
+                   if(v[i]==0){
+                      v[i]=3-v[node];
+                   q.push(i);
+                     }
+                      else if(v[i]==v[node])
+                          return false;
+             }
+          }
+
+    }
+    return true;
+    }
+};
