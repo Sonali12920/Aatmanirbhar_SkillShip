@@ -1,0 +1,20 @@
+https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/
+
+Number of Burgers with No Waste of Ingredients
+
+class Solution {
+public:
+    vector<int> numOfBurgers(int tomatoSlices, int cheeseSlices) {
+          vector<int>res;
+           int a=(tomatoSlices-2*cheeseSlices);
+            if(a%2!=0 || a<0) 
+                return res;
+               int i=a/2;
+               int j=cheeseSlices-i;
+               if(i<0 || j<0)
+                   return res;
+                res.push_back(i);
+                res.push_back(j);
+        return res;
+    }
+};
